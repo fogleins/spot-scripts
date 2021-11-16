@@ -1,0 +1,107 @@
+simon@localhost:~> cd Documents/
+simon@localhost:~/Documents> ls
+console1-output-spot-export.txt  docker-compose.yml   spot-demo-export.sh
+console2-output-spot-export.txt  spot-album-json-gen
+simon@localhost:~/Documents> bash spot-demo-export.sh 
+[sudo] password for root: 
+Starting demoSPOT ... done
+root@70bb375f6dd7:/srv/spotweb# bash ~/spot_export.sh -a 20211029_golyabal
+A script hasznalata csak egyszintes album eseten javasolt. Biztosan folytatod? [i/n] i
+Export inditasa a kovetkezo helyen talalhato albumra: spot-tudastar:/IT_kepzes/testalbums:/20211029_golyabal
+Transferred:              0 / 0 Byte, -, 0 Byte/s, ETA -
+Checks:                21 / 21, 100%
+Elapsed time:         2.7s
+{
+  "title": "Gólyabál",
+  "cover": "rendezveny/400/20211029_191114_ppeti.jpg",
+  "photographers": [],
+  "events": ["Gólyabál"]
+}
+json rendben? (i/n) i
+Exporting with the following setup:
+  INPUT_PATH:            ./20211029_golyabal/
+  OUTPUT_PATH:           /srv/spotweb/web_images/2021
+  CONTENT_PATH:          /srv/spotweb/content/photo/2021
+  GALLERY_BASE_PATH:     /photos/2021
+  IN_YEAR:               2021
+  CONVERT_LOG:           ./logs/20211029_golyabal.log
+  WEB_MAX_SIZE:          2048
+  THUMB_MAX_HEIGHT_SIZE: 400
+-----------------------------------
+Gallery name: 20211029_golyabal
+Searching for 'web' directories...
+Found 'web' directory in 'muterem' folder with 3 files
+Writing log...
+Log written
+-----------
+Found 'web' directory in 'rendezveny' folder with 3 files
+Writing log...
+Log written
+-----------
+Found 'web' directory in 'szivecskeskeret' folder with 3 files
+Writing log...
+Log written
+-----------
+Found 'web' directory in 'tancok' folder with 3 files
+Writing log...
+Log written
+-----------
+Writing [photo] content to /srv/spotweb/content/photo/2021/20211029_golyabal/muterem
+WARN : cover _20211029_234226_tisi.jpg_ not found - check if the cover exits
+Writing [photo] content to /srv/spotweb/content/photo/2021/20211029_golyabal/rendezveny
+Writing [photo] content to /srv/spotweb/content/photo/2021/20211029_golyabal/szivecskeskeret
+Writing [photo] content to /srv/spotweb/content/photo/2021/20211029_golyabal/tancok
+WARN : cover image _rendezveny/20211029_191114_ppeti.jpg_ at sublist description is probably missing - search a new one                                                                                                                 
+Writing [sublist] content to /srv/spotweb/content/photo/2021/20211029_golyabal.md
+end...
+[CONVERT WEB 2.556928921 sec] 20211029_163258_golyabal.jpg
+[CONVERT WEB 2.508090488 sec] 20211029_181411_golyabal_0db.jpg
+[CONVERT WEB 2.242859446 sec] 20211029_204008_noemi.jpg
+[CONVERT WEB 3.016715943 sec] 20211029_191114_ppeti.jpg
+[CONVERT WEB 2.061554749 sec] 20211029_203633_noemi.jpg
+[CONVERT WEB 2.300421526 sec] 20211029_203518_noemi.jpg
+[CONVERT WEB 2.652044329 sec] 20211029_201917_ppeti.jpg
+[CONVERT WEB 2.352506231 sec] 20211029_201654_tisi.jpg
+[CONVERT WEB 22.222155795 sec] 20211029_201942_martzi.jpg
+[CONVERT WEB 569.146672373 sec] 20211029_191054_tisi.jpg
+[CONVERT WEB 574.226867967 sec] 20211029_181558_golyabal.jpg
+[CONVERT THUMB .735412479 sec] 20211029_181411_golyabal_0db.jpg
+[CONVERT THUMB .772769160 sec] 20211029_181558_golyabal.jpg
+[CONVERT THUMB .774902750 sec] 20211029_191054_tisi.jpg
+[CONVERT THUMB .789271644 sec] 20211029_163258_golyabal.jpg
+[CONVERT THUMB .420938437 sec] 20211029_203518_noemi.jpg
+[CONVERT THUMB .464785751 sec] 20211029_203633_noemi.jpg
+[CONVERT THUMB .471613792 sec] 20211029_204008_noemi.jpg
+[CONVERT THUMB .513891945 sec] 20211029_191114_ppeti.jpg
+[CONVERT THUMB .350428267 sec] 20211029_201654_tisi.jpg
+[CONVERT THUMB .371320961 sec] 20211029_201942_martzi.jpg
+[CONVERT THUMB .416972981 sec] 20211029_201917_ppeti.jpg
+Start building sites … 
+
+                   | EN  
+-------------------+-----
+  Pages            | 97  
+  Paginator pages  |  1  
+  Non-page files   |  0  
+  Static files     | 47  
+  Processed images |  0  
+  Aliases          |  2  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Total in 79 ms
+Az album exportalasa 582 masodperc alatt befejezodott.
+Ne felejtsd el ellenorizni, hogy a jogosultsagok megfeleloen modositva lettek-e az exportalt album fajljain. Tobbszintes album eseten a script ezeket meg sem probalja modositani!
+
+
+Permissionok:
+/srv/spotweb/web_images/2021-en belul:
+drwxrwxr-x 1 root users  76 Nov 16 12:48 20211029_golyabal
+2048-on belul:
+ls: cannot access '/srv/spotweb/web_images/2021/20211029_golyabal/2048': No such file or directory
+contenten belul:
+drwxrwxr-x 1 root users  100 Nov 16 12:48 20211029_golyabal
+-rwxrwxr-x 1 root users  373 Nov 16 13:00 20211029_golyabal.md
+root@70bb375f6dd7:/srv/spotweb# 
+
+
