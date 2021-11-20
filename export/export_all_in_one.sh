@@ -58,6 +58,11 @@ update_permissions() {
     chmod 775 ${md_path_filesystem}
     chgrp users ${md_path_filesystem}
 
+    # a public/photo/2021 permission errorok javitasa
+    public_html_path="/srv/spotweb/public/photo/${album_path:0:4}/${album_path}"
+    chmod -R 775 ${public_html_path}
+    chgrp -R users ${public_html_path}
+
     # ez nem volt tesztelve, lehet, hogy jol mukodik, de olyan tobbszintes album eseten,
     # ahol az alalbumokat nem egyidoben exportaljuk, szinte biztos, hogy nem jo, ilyenkor a
     # script hasznalata nem is javasolt
