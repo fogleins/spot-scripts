@@ -1,6 +1,10 @@
+# neha a hugo build errorok miatt nem frissulnek a permissionok
+# az export_all_in_one.sh hasznalataval, ilyenkor hasznos ezt a
+# scriptet hasznalni, hogy a manualis atirogatast elkerulhessuk
+
 album_path=""
 
-while getopts 'd:a:' flag; do
+while getopts 'a:' flag; do
   case "${flag}" in
     a) album_path="${OPTARG}" ;;
     *) echo "Ismeretlen flag."
