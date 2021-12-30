@@ -15,7 +15,7 @@
 
 
 export_start=`date +%s`
-drive_name="teamdrive-2021"
+drive_name="teamdrive-$(date +%Y)"
 album_path=""
 
 # flagek kezelese
