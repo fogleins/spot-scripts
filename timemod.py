@@ -5,9 +5,9 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--directory", help="Set the working directory", required=True)
 parser.add_argument("-t", "--test", "--dry-run", action="store_true", help="See a list of the current filenames and what they would be renamed to without making modifying them.")
-parser.add_argument("-s", "--seconds", help="Set the time delta in seconds. Note that if you specify other time delta arguments, all of them will be applyed (e.g. setting -s 60 and -m 1 will add two minutes.")
-parser.add_argument("-m", "--minutes", help="Set the time delta in minutes. Note that if you specify other time delta arguments, all of them will be applyed (e.g. setting -s 60 and -m 1 will add two minutes.")
-parser.add_argument("-H", "--hours", help="Set the time delta in hours. Note that if you specify other time delta arguments, all of them will be applyed (e.g. setting -s 60 and -m 1 will add two minutes.")
+parser.add_argument("-s", "--seconds", help="Set the time delta in seconds. Note that if you specify other time delta arguments, all of them will be applied (e.g. setting -s 60 and -m 1 will add two minutes.")
+parser.add_argument("-m", "--minutes", help="Set the time delta in minutes. Note that if you specify other time delta arguments, all of them will be applied (e.g. setting -s 60 and -m 1 will add two minutes.")
+parser.add_argument("-H", "--hours", help="Set the time delta in hours. Note that if you specify other time delta arguments, all of them will be applied (e.g. setting -s 60 and -m 1 will add two minutes.")
 args = parser.parse_args()
 
 directory = args.directory
