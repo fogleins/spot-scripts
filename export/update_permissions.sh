@@ -42,6 +42,10 @@ update_permissions() {
         chmod -R 775 ${mla_content_path}
         chgrp -R users ${mla_content_path}
     fi
+
+    # public/levels jogosultsagok modositasa 755-rol 775-re
+    # a find visszaadja a mappat, amiben a html es az xml rw-r--r--, ezert a mappan belul ezeket is modositjuk (R flag)
+    find "/srv/spotweb/public/levels" -perm 755 -exec chgrp -R users {} \; -exec chmod -R 775 {} \;
 }
 
 update_permissions && 

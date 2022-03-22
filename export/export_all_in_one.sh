@@ -74,6 +74,10 @@ update_permissions() {
         chmod -R 775 ${mla_content_path}
         chgrp -R users ${mla_content_path}
     fi
+
+    # public/levels jogosultsagok modositasa 755-rol 775-re
+    # a find visszaadja a mappat, amiben a html es az xml rw-r--r--, ezert a mappan belul ezeket is modositjuk (R flag)
+    find "/srv/spotweb/public/levels" -perm 755 -exec chgrp -R users {} \; -exec chmod -R 775 {} \;
 }
 
 echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${album_path}"
@@ -96,7 +100,7 @@ export_end=`date +%s` && echo "Az album exportalasa $((export_end-export_start))
 echo "Ne felejtsd el ellenorizni, hogy a jogosultsagok megfeleloen modositva lettek-e az exportalt album fajljain. Tobbszintes album eseten a script ezeket meg sem probalja modositani!"
 printf "\n\n"
 echo "Permissionok:"
-echo "/srv/spotweb/web_images/2021-en belul:"
+echo "/srv/spotweb/web_images/${album_path:0:4} mappaban:"
 ls -la /srv/spotweb/web_images/${album_path:0:4}/ | grep ${album_path,,}
 echo "2048-on belul:"
 ls -la /srv/spotweb/web_images/${album_path:0:4}/${album_path,,}/2048 | tail -n 10
