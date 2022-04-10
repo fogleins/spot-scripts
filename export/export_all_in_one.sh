@@ -85,7 +85,7 @@ echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${alb
 # &&-ekkel kotjuk ossze, hogy csak akkor fusson le a kovetkezo, ha az elozo sikeresen lefutott
 # a sleepek csak a biztonsag kedveert szerepelnek, jo esellyel elhagyhatok
 cd /mnt/archive/google_drive_downloads/${USER}/ &&
-rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 && sleep 0.5 &&
+rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 --exclude=**NOEXPORT** --ignore-case && sleep 0.5 &&
 check_json && 
 python3 scripts/spot_export_VinceMod.py -i ./${album_path}/ -l ./logs/${album_path}.log && sleep 0.5 && 
 bash scripts/convert.sh ./logs/${album_path,,}.log && sleep 0.2 && 
