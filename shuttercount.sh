@@ -20,10 +20,10 @@ elif [ "${directory: -1}" == "/" ]; then
     directory="${directory:0:-1}"
 fi
 
-echo $directory
+find $directory -name "*.NEF" -exec echo "" \; -exec exiftool {} \; | grep -E 'Serial Number|Shutter Count|File Modification Date/Time|Camera Model Name'
 
-directory="$directory/*.NEF"
-for file in $directory; do
-    exiftool $file | grep -E 'Serial Number|Shutter Count|File Modification Date/Time|Camera Model Name'
-    echo ""
-done
+#directory="$directory/*.NEF"
+#for file in $directory; do
+#    exiftool $file | grep -E 'Serial Number|Shutter Count|File Modification Date/Time|Camera Model Name'
+#    echo ""
+#done
