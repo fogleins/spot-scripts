@@ -87,7 +87,7 @@ echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${alb
 cd /mnt/archive/google_drive_downloads/${USER}/ &&
 rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 --exclude=**NO**EXPORT** --ignore-case && sleep 0.5 &&
 check_json && 
-python3 scripts/spot_export_VinceMod.py -i ./${album_path}/ -l ./logs/${album_path}.log && sleep 0.5 && 
+python3 scripts/spot_export_VinceMod.py -i ./${album_path}/ -l ./logs/${album_path,,}.log && sleep 0.5 &&
 bash scripts/convert.sh ./logs/${album_path,,}.log && sleep 0.2 && 
 cd /srv/spotweb && sleep 0.2 && 
 hugo --noTimes && 
