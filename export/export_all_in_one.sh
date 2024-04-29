@@ -45,6 +45,18 @@ check_json() {
     fi
 }
 
+check_album_exists() {
+    albums=`find /srv/spotweb/web_images/ -maxdepth 2 -type d -name ${album_path}`
+    if [ "$albums" != "" ]; then
+        read -r -p "Ez az album már exportálásra került. Biztosan újraexportálod? (i/n) " album_exists_response
+        if [[ "$album_exists_response" =~ ^([iI])$ ]] ; then
+            : # no op
+        else # ha nem akarjuk újraexportálni, akkor leállunk
+            exit 1
+        fi
+    fi
+}
+
 update_permissions() {
     # fotok es a teljes mappa jogosultsagainak frissitese
     # ${album_path:0:4} az evet adja vissza (albumnev elso negy karaktere)
@@ -81,6 +93,7 @@ update_permissions() {
     find "/srv/spotweb/public/" -perm 755 -exec chgrp -R users {} \; -exec chmod -R 775 {} \;
 }
 
+check_album_exists
 echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${album_path}"
 
 # &&-ekkel kotjuk ossze, hogy csak akkor fusson le a kovetkezo, ha az elozo sikeresen lefutott
