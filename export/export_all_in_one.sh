@@ -84,14 +84,13 @@ update_permissions() {
 echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${album_path}"
 
 # &&-ekkel kotjuk ossze, hogy csak akkor fusson le a kovetkezo, ha az elozo sikeresen lefutott
-# a sleepek csak a biztonsag kedveert szerepelnek, jo esellyel elhagyhatok
 cd /mnt/archive/google_drive_downloads/${USER}/ &&
-rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 --exclude=**NO**EXPORT** --ignore-case && sleep 0.5 &&
+rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 --exclude=**NO**EXPORT** --ignore-case &&
 check_json && 
 source ${scripts_dir}/.py3-libs/bin/activate &&
-python3 ${scripts_dir}/spot_export_SimonMod.py -i ./${album_path}/ -l ./logs/${album_path,,}.log && sleep 0.5 &&
-bash ${scripts_dir}/convert.sh ./logs/${album_path,,}.log && sleep 0.2 &&
-cd /srv/spotweb && sleep 0.2 && 
+python3 ${scripts_dir}/spot_export_SimonMod.py -i ./${album_path}/ -l ./logs/${album_path,,}.log &&
+bash ${scripts_dir}/convert.sh ./logs/${album_path,,}.log &&
+cd /srv/spotweb &&
 hugo --noTimes
 update_permissions
 deactivate # deactivate python venv
