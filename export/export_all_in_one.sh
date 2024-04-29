@@ -46,7 +46,7 @@ check_json() {
 }
 
 check_album_exists() {
-    albums=`find /srv/spotweb/web_images/ -maxdepth 2 -type d -name ${album_path}`
+    albums=`find /mnt/archive/google_drive_downloads -maxdepth 2 -type d -name ${album_path}`
     if [ "$albums" != "" ]; then
         read -r -p "Ez az album már exportálásra került. Biztosan újraexportálod? (i/n) " album_exists_response
         if [[ "$album_exists_response" =~ ^([iI])$ ]] ; then
