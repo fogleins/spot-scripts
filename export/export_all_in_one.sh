@@ -17,6 +17,7 @@
 export_start=`date +%s`
 drive_name="teamdrive-$(date +%Y)"
 album_path=""
+scripts_dir="/home/${USER}/scripts"
 
 # flagek kezelese
 while getopts 'd:a:' flag; do
@@ -35,7 +36,7 @@ fi
 
 check_json() {
     json_path="./${album_path}/info.json"
-    head ${json_path}
+    cat ${json_path}
     read -r -p "json rendben? (i/n) " json_response
     if [[ "$json_response" =~ ^([iI])$ ]] ; then
         : # no op
@@ -87,12 +88,15 @@ echo "Export inditasa a kovetkezo helyen talalhato albumra: ${drive_name}:/${alb
 cd /mnt/archive/google_drive_downloads/${USER}/ &&
 rclone copy ${drive_name}:/${album_path} ./${album_path} -P --transfers=20 --exclude=**NO**EXPORT** --ignore-case && sleep 0.5 &&
 check_json && 
-python3 scripts/spot_export_VinceMod.py -i ./${album_path}/ -l ./logs/${album_path,,}.log && sleep 0.5 &&
-bash scripts/convert.sh ./logs/${album_path,,}.log && sleep 0.2 && 
+source ${scripts_dir}/.py3-libs/bin/activate &&
+python3 ${scripts_dir}/spot_export_SimonMod.py -i ./${album_path}/ -l ./logs/${album_path,,}.log && sleep 0.5 &&
+bash ${scripts_dir}/convert.sh ./logs/${album_path,,}.log && sleep 0.2 &&
 cd /srv/spotweb && sleep 0.2 && 
-hugo --noTimes && 
-update_permissions && 
-export_end=`date +%s` && echo "Az album exportalasa $((export_end-export_start)) masodperc alatt befejezodott."
+hugo --noTimes
+update_permissions
+deactivate # deactivate python venv
+export_end=`date +%s`
+echo "Az album exportalasa $((export_end-export_start)) masodperc alatt befejezodott."
 
 # TODO: tobbszintes albumnal is meg lehetne nezni, pl ha a content/photo/2021-en belul van album_neve nevu mappa, akkor abban rekurzivan at lehetne allitani
 echo "Ne felejtsd el ellenorizni, hogy a jogosultsagok megfeleloen modositva lettek-e az exportalt album fajljain. Tobbszintes album eseten a script ezeket meg sem probalja modositani!"
