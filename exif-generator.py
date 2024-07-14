@@ -45,7 +45,7 @@ with open("exif-data.csv", "w", newline="") as csv_file:
     writer = csv.DictWriter(csv_file, fieldnames=field_names)
     writer.writeheader()
 
-    for f in os.listdir():
+    for f in sorted(os.listdir()):
         if f.lower().endswith(".jpg"):
             try:
                 image = Image.open(f)
